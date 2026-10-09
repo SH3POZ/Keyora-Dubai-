@@ -7,7 +7,7 @@ A **Claude skill** that turns one Dubai off-plan unit into a client-ready evalua
 
 <p>
 <img src="docs/report-ar.png" width="300" alt="Arabic report on a phone">
-<img src="docs/report-en.png" width="480" alt="English report on desktop">
+<img src="docs/report-en.png" width="480" alt="English report on desktop, made-up test data with every feature on">
 </p>
 
 Open the full example: [examples/binghatti-hillviews-studio.html](examples/binghatti-hillviews-studio.html)
@@ -15,13 +15,21 @@ Open the full example: [examples/binghatti-hillviews-studio.html](examples/bingh
 
 ## What the report contains
 - **Verdict**: profit if you sell at handover, net rent and net yield
+- **Source buttons**: switch between up to three market sources (DXB Interact, Bayut, Property Monitor)
+- **Price cases**: conservative, normal, optimistic
 - **Four checks**: price against the area, safety margin, break-even sale price, net yield
-- **Four market scenarios**: market falls, stays flat, base case, strong market
-- **Supply and demand**: what is selling, how much of the project is sold, what is being built
+- **Where the price sits**: what you pay, break-even, worth today, expected at handover
+- **Market scenarios** and separate **rent scenarios**, four each, tap to choose
+- **Keep-and-rent projection**: total profit after 5 years of renting, then selling
+- **Supply and demand**: what buyers bought, the project's unit mix, handovers by year
+- **Location and comfort**: facing, sun, shade, road and aircraft noise, wind, flooding
+- **Premiums**: metro, view, waterfront and more, from one editable table
 - **Payment plan** and the cash needed before handover
+- **Photo gallery**
 - **A "confirm before relying on this" box** listing every placeholder and unconfirmed figure
-- **Every calculation**, step by step
-- **Sources**, each with its period and the date it was pulled
+- **Every calculation**, step by step, and **sources** with the date each was pulled
+- **Summary to send**: a short text ready to copy into WhatsApp
+- **Save as PDF** button
 - **Your footer**: name, company, BRN, WhatsApp button, logo and photo
 - One button switches the whole report between **العربية** and **English**
 
@@ -54,7 +62,8 @@ Google Maps. A sales offer from the developer gives the most accurate result. De
 | `skills/keyora-offplan/SKILL.md` | the instructions Claude follows |
 | `references/` | the steps, the sources, and every formula |
 | `kit/calc.js` | all the maths |
-| `kit/check.js` | re-derives the figures a second way and compares |
+| `kit/check.js` | runs every combination and re-derives the figures a second way |
+| `kit/config/premiums.json` | the premium table, caps, target yield, holding period |
 | `kit/build.py` + `kit/template.html` | data file in, report page out |
 | `kit/data/` | a complete real example |
 
@@ -66,7 +75,7 @@ python3 build.py data/example-binghatti-hillviews-studio.json
 ```
 
 ## Status
-Version 1.0. Built and tested on Linux with Python 3.13 and Node 22. Not yet tested on macOS or
+Version 1.1. Built and tested on Linux with Python 3.13 and Node 22. Not yet tested on macOS or
 Windows. More calculators (ready property, mortgage, holiday home) are planned.
 
 ## License
@@ -90,9 +99,15 @@ financial advice.
 
 ## التقرير فيه إيه
 - **الحكم**: الربح لو بعت عند الاستلام، وصافي الإيجار والعائد
+- **زراير المصادر**: تبدّل بين 3 مصادر (DXB Interact و Bayut و Property Monitor)
+- **حالات السعر**: متحفظة، عادية، متفائلة
 - **أربع فحوص**: السعر مقارنة بالمنطقة، هامش الأمان، سعر التعادل، العائد الصافي
-- **أربع سيناريوهات للسوق**: ينزل، ثابت، الحالة الأساسية، سوق قوي
-- **العرض والطلب**: إيه اللي بيتباع، نسبة المباع في المشروع، والمعروض القادم
+- **سيناريوهات السوق وسيناريوهات الإيجار**: أربعة لكل واحد، بالضغط
+- **لو احتفظت بيها 5 سنين**: إجمالي الربح من الإيجار والبيع
+- **العرض والطلب**: إيه اللي بيتباع، توزيع وحدات المشروع، والتسليمات سنة بسنة
+- **الموقع والراحة**: الواجهة، الشمس، الظل، الضوضاء، الرياح، الفيضانات
+- **العلاوات**: مترو، إطلالة، واجهة مائية وغيرها، من جدول واحد قابل للتعديل
+- **معرض صور**، **ملخص جاهز للواتساب**، وزرار **حفظ PDF**
 - **خطة الدفع** والسيولة المطلوبة قبل الاستلام
 - **خانة "يجب التأكد منه"** فيها كل رقم مؤقت أو غير مؤكد
 - **كل الحسابات** خطوة بخطوة، و**المصادر** بتاريخ سحبها

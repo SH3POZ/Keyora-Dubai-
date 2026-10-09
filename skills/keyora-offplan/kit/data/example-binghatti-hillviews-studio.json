@@ -5,55 +5,251 @@
   "project": {
     "name": "Binghatti Hillviews",
     "developer": "Binghatti",
-    "area": { "en": "Dubai Science Park", "ar": "دبي ساينس بارك" },
-    "city": { "en": "Dubai", "ar": "دبي" }
+    "area": {
+      "en": "Dubai Science Park",
+      "ar": "دبي ساينس بارك"
+    },
+    "city": {
+      "en": "Dubai",
+      "ar": "دبي"
+    }
   },
   "unit": {
-    "type": { "en": "Studio", "ar": "استوديو" },
+    "type": {
+      "en": "Studio",
+      "ar": "استوديو"
+    },
     "ref": "Type 8",
     "size": 412,
     "price": 824000
   },
   "costs": {
-    "dldPct": 4, "adminFee": 5000, "serviceChargePsf": 15,
-    "managementPct": 5, "vacancyPct": 4, "sellCommissionPct": 2, "vatPct": 5
+    "dldPct": 4,
+    "adminFee": 5000,
+    "serviceChargePsf": 15,
+    "managementPct": 5,
+    "vacancyPct": 4,
+    "sellCommissionPct": 2,
+    "vatPct": 5,
+    "furnishedPremium": 0,
+    "otherYearly": 0
   },
   "plan": [
-    { "label": { "en": "Down payment", "ar": "الدفعة المقدمة" }, "pct": 20, "when": { "en": "On booking", "ar": "عند الحجز" }, "beforeHandover": true },
-    { "label": { "en": "During construction", "ar": "أثناء الإنشاء" }, "pct": 50, "when": { "en": "Before handover", "ar": "قبل الاستلام" }, "beforeHandover": true },
-    { "label": { "en": "On handover", "ar": "عند الاستلام" }, "pct": 30, "when": { "en": "At handover", "ar": "عند الاستلام" }, "beforeHandover": false }
+    {
+      "label": {
+        "en": "Down payment",
+        "ar": "الدفعة المقدمة"
+      },
+      "pct": 20,
+      "when": {
+        "en": "On booking",
+        "ar": "عند الحجز"
+      },
+      "beforeHandover": true
+    },
+    {
+      "label": {
+        "en": "During construction",
+        "ar": "أثناء الإنشاء"
+      },
+      "pct": 50,
+      "when": {
+        "en": "Before handover",
+        "ar": "قبل الاستلام"
+      },
+      "beforeHandover": true
+    },
+    {
+      "label": {
+        "en": "On handover",
+        "ar": "عند الاستلام"
+      },
+      "pct": 30,
+      "when": {
+        "en": "At handover",
+        "ar": "عند الاستلام"
+      },
+      "beforeHandover": false
+    }
   ],
   "market": {
-    "areaPsf": 2024, "areaRent": 52000, "priceGrowth12m": 10, "rentGrowth12m": null,
-    "psfNote": { "en": "Studio price per sqft in the area, last 12 months", "ar": "سعر القدم للاستوديو في المنطقة، آخر 12 شهر" },
-    "rentNote": { "en": "Median annual rent, 19 studio contracts, 9 Jul to 9 Oct 2026", "ar": "وسيط الإيجار السنوي، 19 عقد استوديو، من 9 يوليو إلى 9 أكتوبر 2026" }
+    "priceGrowth12m": 5.9,
+    "rentGrowth12m": null,
+    "sources": [
+      {
+        "name": "DXB Interact",
+        "main": true,
+        "psfHigh": 2117,
+        "psfLow": 1607,
+        "rent": 52000,
+        "period": {
+          "en": "Sales: 2026 to 9 Oct · Rents: 9 Jul to 9 Oct 2026",
+          "ar": "المبيعات: 2026 حتى 9 أكتوبر · الإيجارات: من 9 يوليو إلى 9 أكتوبر 2026"
+        },
+        "sample": {
+          "en": "416 first sales, 37 resales, 19 rent contracts (studios)",
+          "ar": "416 بيع أول، 37 إعادة بيع، 19 عقد إيجار (استوديو)"
+        }
+      }
+    ]
   },
   "supply": {
     "salesByType": [
-      { "label": { "en": "Studio", "ar": "استوديو" }, "count": 105, "match": true },
-      { "label": { "en": "1 bedroom", "ar": "غرفة واحدة" }, "count": 20 },
-      { "label": { "en": "2 bedrooms", "ar": "غرفتان" }, "count": 17 }
+      {
+        "label": {
+          "en": "Studio",
+          "ar": "استوديو"
+        },
+        "count": 105,
+        "match": true
+      },
+      {
+        "label": {
+          "en": "1 bedroom",
+          "ar": "غرفة واحدة"
+        },
+        "count": 20
+      },
+      {
+        "label": {
+          "en": "2 bedrooms",
+          "ar": "غرفتان"
+        },
+        "count": 17
+      }
     ],
-    "salesPeriod": { "en": "New (primary) apartment sales in the area, 9 Jul to 9 Oct 2026", "ar": "مبيعات الشقق الجديدة (أولية) في المنطقة، من 9 يوليو إلى 9 أكتوبر 2026" },
-    "project": { "units": 1575, "sold": 410 },
-    "area": { "upcomingUnits": 6416, "upcomingProjects": 3 }
+    "salesPeriod": {
+      "en": "New (primary) apartment sales in the area, 9 Jul to 9 Oct 2026",
+      "ar": "مبيعات الشقق الجديدة (أولية) في المنطقة، من 9 يوليو إلى 9 أكتوبر 2026"
+    },
+    "project": {
+      "units": 1575,
+      "sold": 410
+    },
+    "area": {
+      "upcomingUnits": 6416,
+      "upcomingProjects": 3
+    },
+    "buildingMix": [
+      {
+        "label": {
+          "en": "Studio",
+          "ar": "استوديو"
+        },
+        "count": 688,
+        "match": true
+      },
+      {
+        "label": {
+          "en": "1 bedroom",
+          "ar": "غرفة واحدة"
+        },
+        "count": 757
+      },
+      {
+        "label": {
+          "en": "2 bedrooms",
+          "ar": "غرفتان"
+        },
+        "count": 107
+      }
+    ],
+    "handovers": []
   },
   "location": [],
   "notes": [
-    { "en": "Studios are the most traded type in the area: 105 of 142 new apartment sales in the last 3 months.", "ar": "الاستوديو هو الأكثر تداولاً في المنطقة: 105 من أصل 142 صفقة شقق جديدة في آخر 3 شهور." },
-    { "en": "The area's price per sqft rose 10% over the last 12 months (AED 1,810 across all apartment types).", "ar": "سعر القدم في المنطقة ارتفع 10% خلال آخر 12 شهر (1,810 درهم لكل أنواع الشقق)." },
-    { "en": "This unit is priced at AED 2,000 per sqft, close to the area's studio level of about AED 2,024.", "ar": "الوحدة مسعّرة بـ 2,000 درهم للقدم، قريبة من مستوى الاستوديو في المنطقة (حوالي 2,024 درهم)." }
+    {
+      "en": "Studios are the most traded type in the area: 105 of 142 new apartment sales in the last 3 months.",
+      "ar": "الاستوديو هو الأكثر تداولاً في المنطقة: 105 من أصل 142 صفقة شقق جديدة في آخر 3 شهور."
+    },
+    {
+      "en": "Studio first-sale prices in the area rose from AED 2,000 per sqft in 2025 to AED 2,117 so far in 2026.",
+      "ar": "سعر البيع الأول للاستوديو في المنطقة ارتفع من 2,000 درهم للقدم في 2025 إلى 2,117 درهم في 2026 حتى الآن."
+    },
+    {
+      "en": "Studio resales in the area trade far lower, at AED 1,607 per sqft. That gap is why the three cases differ so much.",
+      "ar": "إعادة بيع الاستوديو في المنطقة أقل بكثير: 1,607 درهم للقدم. هذا الفرق هو سبب اختلاف الحالات الثلاث."
+    },
+    {
+      "en": "The project has 688 studios out of 1,552 listed units, so there will be many similar units for sale and rent at handover.",
+      "ar": "المشروع فيه 688 استوديو من أصل 1,552 وحدة مدرجة، فسيكون هناك وحدات مشابهة كثيرة للبيع والإيجار عند الاستلام."
+    }
   ],
   "assumptions": [
-    { "en": "Handover date: DXB Interact lists 1 Apr 2026 with construction at 32.6%; broker listings mention Q4 2026. This report uses 31 Dec 2026. Confirm with the developer.", "ar": "تاريخ الاستلام: DXB Interact يذكر 1 أبريل 2026 مع نسبة إنجاز 32.6%، وإعلانات الوسطاء تذكر الربع الرابع 2026. التقرير يستخدم 31 ديسمبر 2026. يجب التأكيد من المطوّر." },
-    { "en": "Service charge of AED 15 per sqft and admin fee of AED 5,000 are placeholders, not confirmed figures. Replace them with the developer's numbers.", "ar": "رسوم الخدمات 15 درهم للقدم والرسوم الإدارية 5,000 درهم أرقام مؤقتة وغير مؤكدة. استبدلها بأرقام المطوّر." },
-    { "en": "Area studio price per sqft (AED 2,024) is derived from the project's studio median (AED 1,990) and its reported gap to the area (-1.69%).", "ar": "سعر القدم للاستوديو في المنطقة (2,024 درهم) محسوب من وسيط استوديو المشروع (1,990 درهم) وفرقه المعلن عن المنطقة (-1.69%)." },
-    { "en": "No 12-month rent change was available, so rent growth is set to 0% in every scenario.", "ar": "لم يتوفر تغيّر الإيجار خلال 12 شهر، لذلك نمو الإيجار 0% في كل السيناريوهات." },
-    { "en": "The unit price is the listed layout price, not a signed sales offer.", "ar": "سعر الوحدة هو السعر المعلن للمخطط، وليس عرض بيع موقّع." }
+    {
+      "en": "Handover date: DXB Interact lists 1 Apr 2026 with construction at 32.6%; broker listings mention Q4 2026. This report uses 31 Dec 2026. Confirm with the developer.",
+      "ar": "تاريخ الاستلام: DXB Interact يذكر 1 أبريل 2026 مع نسبة إنجاز 32.6%، وإعلانات الوسطاء تذكر الربع الرابع 2026. التقرير يستخدم 31 ديسمبر 2026. يجب التأكيد من المطوّر."
+    },
+    {
+      "en": "Service charge of AED 15 per sqft and admin fee of AED 5,000 are placeholders, not confirmed figures. Replace them with the developer's numbers.",
+      "ar": "رسوم الخدمات 15 درهم للقدم والرسوم الإدارية 5,000 درهم أرقام مؤقتة وغير مؤكدة. استبدلها بأرقام المطوّر."
+    },
+    {
+      "en": "The conservative case uses all studio resales in the area (37 deals in 2026), which include ready units. It is not an off-plan-only resale figure.",
+      "ar": "الحالة المتحفظة تستخدم كل صفقات إعادة بيع الاستوديو في المنطقة (37 صفقة في 2026) وتشمل وحدات جاهزة، وليست إعادة بيع على الخارطة فقط."
+    },
+    {
+      "en": "No 12-month rent change was available, so rent growth is set to 0% in every scenario.",
+      "ar": "لم يتوفر تغيّر الإيجار خلال 12 شهر، لذلك نمو الإيجار 0% في كل السيناريوهات."
+    },
+    {
+      "en": "The unit price is the listed layout price, not a signed sales offer.",
+      "ar": "سعر الوحدة هو السعر المعلن للمخطط، وليس عرض بيع موقّع."
+    },
+    {
+      "en": "Price growth of 5.9% compares 2026 so far with the full year 2025 for studio first sales. It is not a rolling 12-month figure.",
+      "ar": "نمو السعر 5.9% يقارن 2026 حتى الآن بسنة 2025 كاملة للبيع الأول للاستوديو، وليس رقم 12 شهر متحركة."
+    },
+    {
+      "en": "Only one market source was used. Bayut's market pages could not be read automatically for this example.",
+      "ar": "تم استخدام مصدر سوق واحد فقط. صفحات Bayut لم تُقرأ آلياً في هذا المثال."
+    },
+    {
+      "en": "No premiums are applied and no location checks were done for this example.",
+      "ar": "لم تُطبّق أي علاوات ولم تُجرَ فحوص الموقع في هذا المثال."
+    }
   ],
   "sources": [
-    { "name": "DXB Interact", "what": { "en": "Project profile: units, sold units, layouts, prices, payment plan", "ar": "ملف المشروع: الوحدات، المباع، المخططات، الأسعار، خطة الدفع" }, "period": { "en": "Last 12 months", "ar": "آخر 12 شهر" }, "pulled": "2026-10-09", "url": "https://dxbinteract.com" },
-    { "name": "DXB Interact", "what": { "en": "Area report: price per sqft, 12-month change, upcoming supply", "ar": "تقرير المنطقة: سعر القدم، التغيّر خلال 12 شهر، المعروض القادم" }, "period": { "en": "1 year to 9 Oct 2026", "ar": "سنة حتى 9 أكتوبر 2026" }, "pulled": "2026-10-09", "url": "https://dxbinteract.com" },
-    { "name": "DXB Interact", "what": { "en": "Rent contracts and sales by bedroom type", "ar": "عقود الإيجار والمبيعات حسب عدد الغرف" }, "period": { "en": "9 Jul to 9 Oct 2026", "ar": "من 9 يوليو إلى 9 أكتوبر 2026" }, "pulled": "2026-10-09", "url": "https://dxbinteract.com" }
-  ]
+    {
+      "name": "DXB Interact",
+      "what": {
+        "en": "Project profile: units, sold units, layouts, prices, payment plan",
+        "ar": "ملف المشروع: الوحدات، المباع، المخططات، الأسعار، خطة الدفع"
+      },
+      "period": {
+        "en": "Last 12 months",
+        "ar": "آخر 12 شهر"
+      },
+      "pulled": "2026-10-09",
+      "url": "https://dxbinteract.com"
+    },
+    {
+      "name": "DXB Interact",
+      "what": {
+        "en": "Studio price per sqft by year, first sales and resales",
+        "ar": "سعر القدم للاستوديو حسب السنة، بيع أول وإعادة بيع"
+      },
+      "period": {
+        "en": "2024 to 9 Oct 2026",
+        "ar": "من 2024 حتى 9 أكتوبر 2026"
+      },
+      "pulled": "2026-10-09",
+      "url": "https://dxbinteract.com"
+    },
+    {
+      "name": "DXB Interact",
+      "what": {
+        "en": "Rent contracts and sales by bedroom type",
+        "ar": "عقود الإيجار والمبيعات حسب عدد الغرف"
+      },
+      "period": {
+        "en": "9 Jul to 9 Oct 2026",
+        "ar": "من 9 يوليو إلى 9 أكتوبر 2026"
+      },
+      "pulled": "2026-10-09",
+      "url": "https://dxbinteract.com"
+    }
+  ],
+  "premiums": [],
+  "photos": []
 }

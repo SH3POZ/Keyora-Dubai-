@@ -1,0 +1,325 @@
+{
+  "lang": "ar",
+  "date": "2026-10-09",
+  "handover": "2028-12-31",
+  "project": {
+    "name": "TEST PROJECT (made-up numbers)",
+    "developer": "Binghatti",
+    "area": {
+      "en": "Dubai Science Park",
+      "ar": "دبي ساينس بارك"
+    },
+    "city": {
+      "en": "Dubai",
+      "ar": "دبي"
+    }
+  },
+  "unit": {
+    "type": {
+      "en": "Studio",
+      "ar": "استوديو"
+    },
+    "ref": "Type 8",
+    "size": 412,
+    "price": 824000
+  },
+  "costs": {
+    "dldPct": 4,
+    "adminFee": 5000,
+    "serviceChargePsf": 15,
+    "managementPct": 5,
+    "vacancyPct": 4,
+    "sellCommissionPct": 2,
+    "vatPct": 5,
+    "furnishedPremium": 5000,
+    "otherYearly": 0
+  },
+  "plan": [
+    {
+      "label": {
+        "en": "Down payment",
+        "ar": "الدفعة المقدمة"
+      },
+      "pct": 20,
+      "when": {
+        "en": "On booking",
+        "ar": "عند الحجز"
+      },
+      "beforeHandover": true
+    },
+    {
+      "label": {
+        "en": "During construction",
+        "ar": "أثناء الإنشاء"
+      },
+      "pct": 50,
+      "when": {
+        "en": "Before handover",
+        "ar": "قبل الاستلام"
+      },
+      "beforeHandover": true
+    },
+    {
+      "label": {
+        "en": "On handover",
+        "ar": "عند الاستلام"
+      },
+      "pct": 30,
+      "when": {
+        "en": "At handover",
+        "ar": "عند الاستلام"
+      },
+      "beforeHandover": false
+    }
+  ],
+  "market": {
+    "priceGrowth12m": 5.9,
+    "rentGrowth12m": 4,
+    "sources": [
+      {
+        "name": "DXB Interact",
+        "main": false,
+        "psfHigh": 2117,
+        "psfLow": 1607,
+        "rent": 52000,
+        "period": {
+          "en": "Sales: 2026 to 9 Oct · Rents: 9 Jul to 9 Oct 2026",
+          "ar": "المبيعات: 2026 حتى 9 أكتوبر · الإيجارات: من 9 يوليو إلى 9 أكتوبر 2026"
+        },
+        "sample": {
+          "en": "416 first sales, 37 resales, 19 rent contracts (studios)",
+          "ar": "416 بيع أول، 37 إعادة بيع، 19 عقد إيجار (استوديو)"
+        }
+      },
+      {
+        "name": "Bayut",
+        "main": false,
+        "psfHigh": 2050,
+        "rent": 50000,
+        "period": {
+          "en": "Sales: 2026 to 9 Oct · Rents: 9 Jul to 9 Oct 2026",
+          "ar": "المبيعات: 2026 حتى 9 أكتوبر · الإيجارات: من 9 يوليو إلى 9 أكتوبر 2026"
+        },
+        "sample": {
+          "en": "416 first sales, 37 resales, 19 rent contracts (studios)",
+          "ar": "416 بيع أول، 37 إعادة بيع، 19 عقد إيجار (استوديو)"
+        }
+      },
+      {
+        "name": "Property Monitor",
+        "main": true,
+        "psfHigh": 2100,
+        "psfLow": 1900,
+        "rent": 54000,
+        "period": {
+          "en": "Sales: 2026 to 9 Oct · Rents: 9 Jul to 9 Oct 2026",
+          "ar": "المبيعات: 2026 حتى 9 أكتوبر · الإيجارات: من 9 يوليو إلى 9 أكتوبر 2026"
+        },
+        "sample": {
+          "en": "416 first sales, 37 resales, 19 rent contracts (studios)",
+          "ar": "416 بيع أول، 37 إعادة بيع، 19 عقد إيجار (استوديو)"
+        }
+      }
+    ]
+  },
+  "supply": {
+    "salesByType": [
+      {
+        "label": {
+          "en": "Studio",
+          "ar": "استوديو"
+        },
+        "count": 105,
+        "match": true
+      },
+      {
+        "label": {
+          "en": "1 bedroom",
+          "ar": "غرفة واحدة"
+        },
+        "count": 20
+      },
+      {
+        "label": {
+          "en": "2 bedrooms",
+          "ar": "غرفتان"
+        },
+        "count": 17
+      }
+    ],
+    "salesPeriod": {
+      "en": "New (primary) apartment sales in the area, 9 Jul to 9 Oct 2026",
+      "ar": "مبيعات الشقق الجديدة (أولية) في المنطقة، من 9 يوليو إلى 9 أكتوبر 2026"
+    },
+    "project": {
+      "units": 1575,
+      "sold": 410
+    },
+    "area": {
+      "upcomingUnits": 6416,
+      "upcomingProjects": 3
+    },
+    "buildingMix": [
+      {
+        "label": {
+          "en": "Studio",
+          "ar": "استوديو"
+        },
+        "count": 688,
+        "match": true
+      },
+      {
+        "label": {
+          "en": "1 bedroom",
+          "ar": "غرفة واحدة"
+        },
+        "count": 757
+      },
+      {
+        "label": {
+          "en": "2 bedrooms",
+          "ar": "غرفتان"
+        },
+        "count": 107
+      }
+    ],
+    "handovers": [
+      {
+        "year": 2026,
+        "units": 555
+      },
+      {
+        "year": 2027,
+        "units": 6899
+      },
+      {
+        "year": 2028,
+        "units": 10663,
+        "mark": true
+      },
+      {
+        "year": 2029,
+        "units": 2495
+      }
+    ]
+  },
+  "location": [
+    {
+      "title": {
+        "en": "Sun",
+        "ar": "الشمس"
+      },
+      "headline": {
+        "en": "Afternoon sun on the west side",
+        "ar": "شمس بعد الظهر على الواجهة الغربية"
+      },
+      "text": {
+        "en": "Test text.",
+        "ar": "نص تجريبي."
+      },
+      "source": "https://www.suncalc.org",
+      "sourceName": "suncalc.org"
+    },
+    {
+      "title": {
+        "en": "Aircraft noise",
+        "ar": "ضوضاء الطيران"
+      },
+      "headline": {
+        "en": "Quiet",
+        "ar": "هادئ"
+      },
+      "text": {
+        "en": "Test text.",
+        "ar": "نص تجريبي."
+      },
+      "source": "https://noise-map.com",
+      "sourceName": "noise-map.com"
+    }
+  ],
+  "notes": [
+    {
+      "en": "Studios are the most traded type in the area: 105 of 142 new apartment sales in the last 3 months.",
+      "ar": "الاستوديو هو الأكثر تداولاً في المنطقة: 105 من أصل 142 صفقة شقق جديدة في آخر 3 شهور."
+    }
+  ],
+  "assumptions": [
+    {
+      "en": "Everything on this page is made-up test data.",
+      "ar": "كل ما في هذه الصفحة بيانات تجريبية غير حقيقية."
+    }
+  ],
+  "sources": [
+    {
+      "name": "DXB Interact",
+      "what": {
+        "en": "Project profile: units, sold units, layouts, prices, payment plan",
+        "ar": "ملف المشروع: الوحدات، المباع، المخططات، الأسعار، خطة الدفع"
+      },
+      "period": {
+        "en": "Last 12 months",
+        "ar": "آخر 12 شهر"
+      },
+      "pulled": "2026-10-09",
+      "url": "https://dxbinteract.com"
+    },
+    {
+      "name": "DXB Interact",
+      "what": {
+        "en": "Studio price per sqft by year, first sales and resales",
+        "ar": "سعر القدم للاستوديو حسب السنة، بيع أول وإعادة بيع"
+      },
+      "period": {
+        "en": "2024 to 9 Oct 2026",
+        "ar": "من 2024 حتى 9 أكتوبر 2026"
+      },
+      "pulled": "2026-10-09",
+      "url": "https://dxbinteract.com"
+    },
+    {
+      "name": "DXB Interact",
+      "what": {
+        "en": "Rent contracts and sales by bedroom type",
+        "ar": "عقود الإيجار والمبيعات حسب عدد الغرف"
+      },
+      "period": {
+        "en": "9 Jul to 9 Oct 2026",
+        "ar": "من 9 يوليو إلى 9 أكتوبر 2026"
+      },
+      "pulled": "2026-10-09",
+      "url": "https://dxbinteract.com"
+    }
+  ],
+  "premiums": [
+    {
+      "key": "metro_near",
+      "why": {
+        "en": "Test reason: station 1.8 km away.",
+        "ar": "سبب تجريبي: المحطة على بعد 1.8 كم."
+      }
+    },
+    {
+      "key": "open_view",
+      "why": {
+        "en": "Test reason: park view.",
+        "ar": "سبب تجريبي: إطلالة على حديقة."
+      }
+    }
+  ],
+  "photos": [
+    {
+      "file": "01.jpg",
+      "caption": {
+        "en": "Test photo one",
+        "ar": "صورة تجريبية 1"
+      }
+    },
+    {
+      "file": "02.jpg",
+      "caption": {
+        "en": "Test photo two",
+        "ar": "صورة تجريبية 2"
+      }
+    }
+  ]
+}

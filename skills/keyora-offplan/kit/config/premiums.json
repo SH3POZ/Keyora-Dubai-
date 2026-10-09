@@ -1,0 +1,17 @@
+{
+  "_about": "KEYORA premium table. Each factor adds a percentage to the rent and to the sale price when it is confirmed for the unit. Edit the numbers to match your own judgement. Totals are capped.",
+  "caps": { "rent": 4, "price": 8 },
+  "targetYield": 6,
+  "holdYears": 5,
+  "factors": {
+    "metro_walk":   { "rent": 2,   "price": 4,   "label": { "en": "Metro within 1 km (open or under construction)", "ar": "مترو على بعد أقل من 1 كم (شغال أو تحت الإنشاء)" } },
+    "metro_near":   { "rent": 1,   "price": 2,   "label": { "en": "Metro within 1 to 2.5 km", "ar": "مترو على بعد 1 إلى 2.5 كم" } },
+    "open_view":    { "rent": 1,   "price": 2,   "label": { "en": "Open view that cannot be built over (park, water, golf, skyline)", "ar": "إطلالة مفتوحة لا يمكن حجبها (حديقة، مياه، جولف، أفق المدينة)" } },
+    "waterfront":   { "rent": 1,   "price": 2,   "label": { "en": "Waterfront or beach community", "ar": "مجتمع على الواجهة المائية أو الشاطئ" } },
+    "branded":      { "rent": 1,   "price": 2,   "label": { "en": "Branded residence", "ar": "مشروع يحمل علامة تجارية" } },
+    "top_developer":{ "rent": 0.5, "price": 2,   "label": { "en": "Developer with a strong on-time delivery record", "ar": "مطوّر له سجل قوي في التسليم في الموعد" } },
+    "short_stay":   { "rent": 2,   "price": 1,   "label": { "en": "Proven holiday-home demand in the community", "ar": "طلب مثبت على الإيجار السياحي في المنطقة" } },
+    "low_supply":   { "rent": 1,   "price": 1,   "label": { "en": "Little new supply coming in the community", "ar": "معروض جديد قليل في المنطقة" } },
+    "infrastructure":{ "rent": 0.5,"price": 2,   "label": { "en": "Confirmed major infrastructure nearby (road, mall, airport expansion)", "ar": "بنية تحتية كبرى مؤكدة بالقرب (طريق، مول، توسعة مطار)" } }
+  }
+}
