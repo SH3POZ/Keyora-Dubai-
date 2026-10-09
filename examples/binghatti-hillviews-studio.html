@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Binghatti Hillviews · Studio</title>
+<!-- KEYORA · Off-plan Calculator · (c) 2026 Hassan Abu El-Leil. See LICENSE. Keep this notice. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column, a ledger of the deal. Gold is used only for the figures that answer the question. */
+:root{
+  color-scheme:dark;
+  --bg:#0b1220; --panel:#111a2c; --line:#24304a; --ink:#eef1f6; --soft:#a4aec2;
+  --gold:#d9b25f; --gold-ink:#0b1220; --good:#5fc79a; --warn:#e3b04b; --bad:#ec7b6f; --fill:#1a2540;
+  --display:"El Messiri","IBM Plex Sans Arabic",Georgia,serif;
+  --body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  color-scheme:light;
+  --bg:#f6f4ee; --panel:#ffffff; --line:#dcd6c6; --ink:#141b2b; --soft:#586178;
+  --gold:#8a6514; --gold-ink:#ffffff; --good:#1c7a52; --warn:#8a5e00; --bad:#b23a2e; --fill:#ece7d8;
+}}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f6f4ee; --panel:#ffffff; --line:#dcd6c6; --ink:#141b2b; --soft:#586178;
+  --gold:#8a6514; --gold-ink:#ffffff; --good:#1c7a52; --warn:#8a5e00; --bad:#b23a2e; --fill:#ece7d8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.7 var(--body);-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin-inline:auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:36px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.25}
+h1{font-size:clamp(1.8rem,6vw,2.7rem);font-weight:700}
+h2{font-size:1.4rem;font-weight:700}
+p{margin:0}
+a{color:var(--gold)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.muted{color:var(--soft);font-size:.9rem}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.22em;color:var(--gold);font-size:1.05rem}
+.brand small{display:block;letter-spacing:0;color:var(--soft);font:400 .78rem var(--body)}
+button{font:inherit;color:inherit;cursor:pointer}
+.lang{background:none;border:1px solid var(--line);border-radius:999px;padding:4px 14px;min-height:40px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.hero{display:flex;flex-direction:column;gap:14px}
+.eyebrow{color:var(--gold);font-size:.85rem;font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.facts div{background:var(--panel);padding:10px 14px;min-width:0}
+.facts div>span{display:block;color:var(--soft);font-size:.8rem}
+.facts b{font-weight:600}
+.verdict{background:var(--panel);border:1px solid var(--gold);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.verdict h2{font-size:1.25rem}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.stat>span{display:block;color:var(--soft);font-size:.85rem}
+.stat b{display:block;font:700 2rem/1.2 var(--display);color:var(--gold)}
+.stat em{font-style:normal;font-size:.9rem;color:var(--soft)}
+section{display:flex;flex-direction:column;gap:14px}
+.pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.pick button{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:start;min-height:44px}
+.pick button b{display:block;font-weight:600}
+.pick button>span{color:var(--soft);font-size:.82rem}
+.pick button[aria-pressed="true"]{border-color:var(--gold);background:var(--gold);color:var(--gold-ink)}
+.pick button[aria-pressed="true"]>span{color:var(--gold-ink)}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.check{background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.check>span{color:var(--soft);font-size:.85rem}
+.check b{font:700 1.5rem/1.3 var(--display)}
+.check p{font-size:.9rem;color:var(--soft)}
+.high b{color:var(--good)} .mid b{color:var(--warn)} .low b{color:var(--bad)}
+.tag{font-size:.78rem;font-weight:600;border:1px solid currentColor;border-radius:999px;padding:0 8px;align-self:flex-start}
+.high .tag{color:var(--good)} .mid .tag{color:var(--warn)} .low .tag{color:var(--bad)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;background:var(--panel)}
+th,td{padding:9px 12px;text-align:start;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{color:var(--soft);font-weight:500;font-size:.82rem;white-space:nowrap}
+td.on,th.on{background:var(--fill)}
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{display:grid;grid-template-columns:minmax(90px,1fr) 3fr auto;gap:10px;align-items:center;font-size:.92rem}
+.track{background:var(--fill);border-radius:4px;height:14px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--soft);border-radius:4px}
+.row.me .track i{background:var(--gold)}
+.plan{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.plan i{display:flex;align-items:center;justify-content:center;font-style:normal;font-size:.82rem;font-weight:600;background:var(--fill);border-inline-end:1px solid var(--bg);min-width:0}
+.plan i.after{background:var(--gold);color:var(--gold-ink)}
+ul{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:8px}
+.confirm{border:1px solid var(--warn);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.confirm h2{font-size:1.1rem;color:var(--warn)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px 16px}
+summary{cursor:pointer;font-weight:600}
+.steps{display:flex;flex-direction:column;gap:8px;margin-top:12px;font-size:.92rem}
+.steps div{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.steps .tot{font-weight:600;border-bottom-style:solid}
+footer{border-top:1px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:14px;font-size:.88rem;color:var(--soft)}
+.agent{display:flex;align-items:center;gap:14px;flex-wrap:wrap;color:var(--ink)}
+.agent img{height:56px;width:56px;object-fit:cover;border-radius:50%}
+.agent img.logo{border-radius:0;width:auto;max-width:140px;object-fit:contain}
+.wa{display:inline-block;background:var(--gold);color:var(--gold-ink);text-decoration:none;font-weight:600;border-radius:999px;padding:8px 18px}
+.credit{font-size:.8rem}
+@media (max-width:480px){.facts div:last-child:nth-child(odd){grid-column:1/-1}.row{grid-template-columns:1fr auto}.row .track{grid-column:1/-1;order:3}}
+@media print{
+  :root{--bg:#fff;--panel:#fff;--line:#cfc8b6;--ink:#111;--soft:#444;--gold:#7a5a12;--gold-ink:#fff;--good:#1c7a52;--warn:#8a5e00;--bad:#b23a2e;--fill:#eee9da}
+  .lang,.pick{display:none} .wrap{gap:22px;padding-block:0} section,.verdict,.confirm{break-inside:avoid}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* KEYORA · Off-plan Calculator · (c) 2026 Hassan Abu El-Leil. See LICENSE.
+   All the maths of the report lives here. Used by the report page and by check.js. */
+(function (root) {
+  "use strict";
+  function yearsBetween(a, b) {
+    var ms = new Date(b + "T00:00:00Z") - new Date(a + "T00:00:00Z");
+    return Math.max(0, ms / (365.25 * 24 * 3600 * 1000));
+  }
+  /* Growth scenarios. g12 = change over the last 12 months (%), may be null.
+     stress -5 · flat 0 · base = half of g12, between 0 and 6 · strong = g12, between 0 and 10 */
+  function scenarios(g12) {
+    var g = (typeof g12 === "number" && isFinite(g12)) ? g12 : 0;
+    var clamp = function (v, lo, hi) { return Math.min(hi, Math.max(lo, v)); };
+    return { stress: -5, flat: 0, base: clamp(g / 2, 0, 6), strong: clamp(g, 0, 10) };
+  }
+  function calc(D, key) {
+    var c = D.costs, u = D.unit, m = D.market;
+    var years = yearsBetween(D.date, D.handover);
+    var pg = scenarios(m.priceGrowth12m)[key], rg = scenarios(m.rentGrowth12m)[key];
+    var dld = u.price * c.dldPct / 100;
+    var totalCost = u.price + dld + c.adminFee;
+    var unitPsf = u.price / u.size;
+    var priceVsArea = (unitPsf - m.areaPsf) / m.areaPsf * 100;
+    var valueToday = m.areaPsf * u.size;
+    /* rent */
+    var grossRent = m.areaRent * Math.pow(1 + rg / 100, years);
+    var vacancy = grossRent * c.vacancyPct / 100;
+    var management = grossRent * c.managementPct / 100;
+    var serviceCharge = c.serviceChargePsf * u.size;
+    var netRent = grossRent - vacancy - management - serviceCharge;
+    var grossYield = grossRent / u.price * 100;
+    var netYield = netRent / totalCost * 100;
+    var payback = netRent > 0 ? totalCost / netRent : null;
+    /* resale at handover */
+    var sellRate = c.sellCommissionPct / 100 * (1 + c.vatPct / 100);
+    var salePrice = valueToday * Math.pow(1 + pg / 100, years);
+    var sellCost = salePrice * sellRate;
+    var profit = salePrice - sellCost - totalCost;
+    var roi = profit / totalCost * 100;
+    var paidPct = 0;
+    (D.plan || []).forEach(function (p) { if (p.beforeHandover) paidPct += p.pct; });
+    var cashIn = u.price * paidPct / 100 + dld + c.adminFee;
+    var cashReturn = profit / cashIn * 100;
+    var breakEven = totalCost / (1 - sellRate);
+    var cushion = (valueToday - breakEven) / valueToday * 100;
+    return { years: years, priceGrowth: pg, rentGrowth: rg, dld: dld, totalCost: totalCost,
+      unitPsf: unitPsf, priceVsArea: priceVsArea, valueToday: valueToday,
+      grossRent: grossRent, vacancy: vacancy, management: management, serviceCharge: serviceCharge,
+      netRent: netRent, grossYield: grossYield, netYield: netYield, payback: payback,
+      sellRate: sellRate, salePrice: salePrice, sellCost: sellCost, profit: profit, roi: roi,
+      paidPct: paidPct, cashIn: cashIn, cashReturn: cashReturn, breakEven: breakEven, cushion: cushion };
+  }
+  /* Plain labels. Thresholds are documented in references/formulas.md */
+  function labels(r) {
+    return {
+      yield: r.netYield >= 6 ? "high" : r.netYield >= 4.5 ? "mid" : "low",
+      price: r.priceVsArea <= -3 ? "below" : r.priceVsArea <= 3 ? "inline" : "above",
+      cushion: r.cushion >= 5 ? "high" : r.cushion >= 0 ? "mid" : "low",
+      profit: r.profit > 0 ? "high" : "low"
+    };
+  }
+  var api = { calc: calc, scenarios: scenarios, labels: labels, yearsBetween: yearsBetween,
+    KEYS: ["stress", "flat", "base", "strong"] };
+  if (typeof module !== "undefined" && module.exports) module.exports = api; else root.KEYORA = api;
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+<script>
+"use strict";
+const D = {"lang": "ar", "date": "2026-10-09", "handover": "2026-12-31", "project": {"name": "Binghatti Hillviews", "developer": "Binghatti", "area": {"en": "Dubai Science Park", "ar": "دبي ساينس بارك"}, "city": {"en": "Dubai", "ar": "دبي"}}, "unit": {"type": {"en": "Studio", "ar": "استوديو"}, "ref": "Type 8", "size": 412, "price": 824000}, "costs": {"dldPct": 4, "adminFee": 5000, "serviceChargePsf": 15, "managementPct": 5, "vacancyPct": 4, "sellCommissionPct": 2, "vatPct": 5}, "plan": [{"label": {"en": "Down payment", "ar": "الدفعة المقدمة"}, "pct": 20, "when": {"en": "On booking", "ar": "عند الحجز"}, "beforeHandover": true}, {"label": {"en": "During construction", "ar": "أثناء الإنشاء"}, "pct": 50, "when": {"en": "Before handover", "ar": "قبل الاستلام"}, "beforeHandover": true}, {"label": {"en": "On handover", "ar": "عند الاستلام"}, "pct": 30, "when": {"en": "At handover", "ar": "عند الاستلام"}, "beforeHandover": false}], "market": {"areaPsf": 2024, "areaRent": 52000, "priceGrowth12m": 10, "rentGrowth12m": null, "psfNote": {"en": "Studio price per sqft in the area, last 12 months", "ar": "سعر القدم للاستوديو في المنطقة، آخر 12 شهر"}, "rentNote": {"en": "Median annual rent, 19 studio contracts, 9 Jul to 9 Oct 2026", "ar": "وسيط الإيجار السنوي، 19 عقد استوديو، من 9 يوليو إلى 9 أكتوبر 2026"}}, "supply": {"salesByType": [{"label": {"en": "Studio", "ar": "استوديو"}, "count": 105, "match": true}, {"label": {"en": "1 bedroom", "ar": "غرفة واحدة"}, "count": 20}, {"label": {"en": "2 bedrooms", "ar": "غرفتان"}, "count": 17}], "salesPeriod": {"en": "New (primary) apartment sales in the area, 9 Jul to 9 Oct 2026", "ar": "مبيعات الشقق الجديدة (أولية) في المنطقة، من 9 يوليو إلى 9 أكتوبر 2026"}, "project": {"units": 1575, "sold": 410}, "area": {"upcomingUnits": 6416, "upcomingProjects": 3}}, "location": [], "notes": [{"en": "Studios are the most traded type in the area: 105 of 142 new apartment sales in the last 3 months.", "ar": "الاستوديو هو الأكثر تداولاً في المنطقة: 105 من أصل 142 صفقة شقق جديدة في آخر 3 شهور."}, {"en": "The area's price per sqft rose 10% over the last 12 months (AED 1,810 across all apartment types).", "ar": "سعر القدم في المنطقة ارتفع 10% خلال آخر 12 شهر (1,810 درهم لكل أنواع الشقق)."}, {"en": "This unit is priced at AED 2,000 per sqft, close to the area's studio level of about AED 2,024.", "ar": "الوحدة مسعّرة بـ 2,000 درهم للقدم، قريبة من مستوى الاستوديو في المنطقة (حوالي 2,024 درهم)."}], "assumptions": [{"en": "Handover date: DXB Interact lists 1 Apr 2026 with construction at 32.6%; broker listings mention Q4 2026. This report uses 31 Dec 2026. Confirm with the developer.", "ar": "تاريخ الاستلام: DXB Interact يذكر 1 أبريل 2026 مع نسبة إنجاز 32.6%، وإعلانات الوسطاء تذكر الربع الرابع 2026. التقرير يستخدم 31 ديسمبر 2026. يجب التأكيد من المطوّر."}, {"en": "Service charge of AED 15 per sqft and admin fee of AED 5,000 are placeholders, not confirmed figures. Replace them with the developer's numbers.", "ar": "رسوم الخدمات 15 درهم للقدم والرسوم الإدارية 5,000 درهم أرقام مؤقتة وغير مؤكدة. استبدلها بأرقام المطوّر."}, {"en": "Area studio price per sqft (AED 2,024) is derived from the project's studio median (AED 1,990) and its reported gap to the area (-1.69%).", "ar": "سعر القدم للاستوديو في المنطقة (2,024 درهم) محسوب من وسيط استوديو المشروع (1,990 درهم) وفرقه المعلن عن المنطقة (-1.69%)."}, {"en": "No 12-month rent change was available, so rent growth is set to 0% in every scenario.", "ar": "لم يتوفر تغيّر الإيجار خلال 12 شهر، لذلك نمو الإيجار 0% في كل السيناريوهات."}, {"en": "The unit price is the listed layout price, not a signed sales offer.", "ar": "سعر الوحدة هو السعر المعلن للمخطط، وليس عرض بيع موقّع."}], "sources": [{"name": "DXB Interact", "what": {"en": "Project profile: units, sold units, layouts, prices, payment plan", "ar": "ملف المشروع: الوحدات، المباع، المخططات، الأسعار، خطة الدفع"}, "period": {"en": "Last 12 months", "ar": "آخر 12 شهر"}, "pulled": "2026-10-09", "url": "https://dxbinteract.com"}, {"name": "DXB Interact", "what": {"en": "Area report: price per sqft, 12-month change, upcoming supply", "ar": "تقرير المنطقة: سعر القدم، التغيّر خلال 12 شهر، المعروض القادم"}, "period": {"en": "1 year to 9 Oct 2026", "ar": "سنة حتى 9 أكتوبر 2026"}, "pulled": "2026-10-09", "url": "https://dxbinteract.com"}, {"name": "DXB Interact", "what": {"en": "Rent contracts and sales by bedroom type", "ar": "عقود الإيجار والمبيعات حسب عدد الغرف"}, "period": {"en": "9 Jul to 9 Oct 2026", "ar": "من 9 يوليو إلى 9 أكتوبر 2026"}, "pulled": "2026-10-09", "url": "https://dxbinteract.com"}]};
+const AGENT = {"name": "", "nameAr": "", "company": "", "brn": "", "whatsapp": "", "socials": {"instagram": "", "tiktok": "", "youtube": "", "linkedin": "", "website": ""}, "_logo": "", "_photo": ""};
+const T = {
+en:{brandSub:"Off-plan Calculator",eyebrow:"Off-plan evaluation",size:"Size",price:"Price",psf:"Price per sqft",handover:"Handover",developer:"Developer",unit:"Unit",
+ aed:"AED",sqft:"sqft",yrs:"years",perYear:"per year",
+ v_profit:"Profitable if sold at handover",v_loss:"A loss if sold at handover in this scenario",v_thin:"Profitable at handover, with a thin margin",
+ sellAt:"If you sell at handover",rentOut:"If you rent it out",netRent:"net rent per year",netYield:"net yield",onCost:"on total cost",basedOn:"Scenario:",
+ pickTitle:"Choose a market scenario",pickHelp:"Tap one to see how the figures change.",
+ stress:"Market falls",flat:"Market stays flat",base:"Base case",strong:"Strong market",growth:"a year",
+ checksTitle:"Four checks on this deal",c_price:"Price against the area",c_cushion:"Safety margin",c_be:"Break-even sale price",c_yield:"Net rental yield",
+ below:"below the area",inline:"in line with the area",above:"above the area",
+ p_price:"This unit costs {a} per sqft. Similar units in the area sell at about {b}.",
+ p_cushion:"The unit is worth about {a} today at area prices. Break-even is {b}.",
+ p_be:"Sell above this price and you cover the price, DLD fee, admin fee and resale commission.",
+ p_yield:"Net rent of {a} a year on a total cost of {b}.",
+ high:"Strong",mid:"Moderate",low:"Weak",
+ tableTitle:"All scenarios side by side",salePrice:"Sale price at handover",profit:"Profit after all costs",roi:"Return on total cost",cashReturn:"Return on cash paid before handover",grossRent:"Gross rent per year",
+ sdTitle:"Supply and demand",selling:"What is selling in the area",project:"This project",unitsSold:"{a} of {b} units sold",areaSupply:"Coming supply in the area",upcoming:"{a} units in {b} projects under construction",
+ planTitle:"Payment plan",cashBefore:"Cash needed before handover",cashHelp:"{a}% of the price, plus the DLD fee and admin fee.",
+ notesTitle:"Good to know",confirmTitle:"Confirm before relying on this report",
+ calcTitle:"How every figure is calculated",s_price:"Unit price",s_dld:"DLD fee ({a}%)",s_admin:"Admin fee",s_total:"Total cost",
+ s_value:"Value today at area price ({a} × {b} sqft)",s_grow:"Price growth {a}% a year for {b} years",s_sale:"Sale price at handover",s_comm:"Resale commission ({a}% + {b}% VAT)",s_profit:"Profit",
+ s_rent:"Area rent per year",s_rgrow:"Rent growth {a}% a year for {b} years",s_vac:"Vacancy ({a}%)",s_mgmt:"Management ({a}%)",s_sc:"Service charge ({a} per sqft)",s_net:"Net rent per year",
+ buySide:"Buying",sellSide:"Selling at handover",rentSide:"Renting out",
+ srcTitle:"Sources",src:"Source",what:"Used for",period:"Period",pulled:"Pulled",
+ prepared:"Prepared by",wa:"WhatsApp me about this unit",waMsg:"Hello, I am interested in {a}",
+ disclaimer:"Estimates based on market data as of {a} and the developer's published information. Prices, rents and fees can change, and past growth does not guarantee future growth. This is not financial advice. Confirm all fees and the payment plan with the developer and the Dubai Land Department before buying."},
+ar:{brandSub:"حاسبة الأوف بلان",eyebrow:"تقييم وحدة على الخارطة",size:"المساحة",price:"السعر",psf:"سعر القدم",handover:"الاستلام",developer:"المطوّر",unit:"الوحدة",
+ aed:"درهم",sqft:"قدم²",yrs:"سنة",perYear:"سنوياً",
+ v_profit:"مربحة عند البيع وقت الاستلام",v_loss:"خسارة عند البيع وقت الاستلام في هذا السيناريو",v_thin:"مربحة عند الاستلام، بهامش ضيق",
+ sellAt:"لو بعت عند الاستلام",rentOut:"لو أجّرتها",netRent:"صافي الإيجار سنوياً",netYield:"العائد الصافي",onCost:"على إجمالي التكلفة",basedOn:"السيناريو:",
+ pickTitle:"اختر سيناريو السوق",pickHelp:"اضغط على أي خيار لترى تغيّر الأرقام.",
+ stress:"السوق ينزل",flat:"السوق ثابت",base:"الحالة الأساسية",strong:"سوق قوي",growth:"سنوياً",
+ checksTitle:"أربعة فحوص للصفقة",c_price:"السعر مقارنة بالمنطقة",c_cushion:"هامش الأمان",c_be:"سعر التعادل عند البيع",c_yield:"العائد الإيجاري الصافي",
+ below:"أقل من المنطقة",inline:"قريب من سعر المنطقة",above:"أعلى من المنطقة",
+ p_price:"سعر القدم في هذه الوحدة {a}. الوحدات المشابهة في المنطقة تُباع بحوالي {b}.",
+ p_cushion:"قيمة الوحدة اليوم بأسعار المنطقة حوالي {a}. سعر التعادل {b}.",
+ p_be:"لو بعت بأعلى من هذا السعر تغطي سعر الوحدة ورسوم الأراضي والرسوم الإدارية وعمولة البيع.",
+ p_yield:"صافي إيجار {a} سنوياً على إجمالي تكلفة {b}.",
+ high:"قوي",mid:"متوسط",low:"ضعيف",
+ tableTitle:"كل السيناريوهات جنباً إلى جنب",salePrice:"سعر البيع عند الاستلام",profit:"الربح بعد كل التكاليف",roi:"العائد على إجمالي التكلفة",cashReturn:"العائد على المدفوع قبل الاستلام",grossRent:"إجمالي الإيجار سنوياً",
+ sdTitle:"العرض والطلب",selling:"ما الذي يُباع في المنطقة",project:"هذا المشروع",unitsSold:"تم بيع {a} من {b} وحدة",areaSupply:"المعروض القادم في المنطقة",upcoming:"{a} وحدة في {b} مشاريع تحت الإنشاء",
+ planTitle:"خطة الدفع",cashBefore:"السيولة المطلوبة قبل الاستلام",cashHelp:"{a}% من السعر، مع رسوم الأراضي والرسوم الإدارية.",
+ notesTitle:"معلومات مهمة",confirmTitle:"يجب التأكد منه قبل الاعتماد على التقرير",
+ calcTitle:"كيف حُسب كل رقم",s_price:"سعر الوحدة",s_dld:"رسوم دائرة الأراضي ({a}%)",s_admin:"الرسوم الإدارية",s_total:"إجمالي التكلفة",
+ s_value:"القيمة اليوم بسعر المنطقة ({a} × {b} قدم²)",s_grow:"نمو السعر {a}% سنوياً لمدة {b} سنة",s_sale:"سعر البيع عند الاستلام",s_comm:"عمولة البيع ({a}% + {b}% ضريبة)",s_profit:"الربح",
+ s_rent:"إيجار المنطقة سنوياً",s_rgrow:"نمو الإيجار {a}% سنوياً لمدة {b} سنة",s_vac:"فترات الشغور ({a}%)",s_mgmt:"إدارة العقار ({a}%)",s_sc:"رسوم الخدمات ({a} للقدم)",s_net:"صافي الإيجار سنوياً",
+ buySide:"الشراء",sellSide:"البيع عند الاستلام",rentSide:"التأجير",
+ srcTitle:"المصادر",src:"المصدر",what:"استُخدم في",period:"الفترة",pulled:"تاريخ السحب",
+ prepared:"إعداد",wa:"راسلني واتساب عن هذه الوحدة",waMsg:"مرحباً، مهتم بوحدة في {a}",
+ disclaimer:"تقديرات مبنية على بيانات السوق بتاريخ {a} والمعلومات المنشورة من المطوّر. الأسعار والإيجارات والرسوم قابلة للتغيّر، والنمو السابق لا يضمن النمو القادم. هذا ليس نصيحة مالية. تأكد من كل الرسوم وخطة الدفع مع المطوّر ودائرة الأراضي والأملاك قبل الشراء."}
+};
+let lang = D.lang === "en" ? "en" : "ar", pick = "base";
+if (location.hash === "#en" || location.hash === "#ar") lang = location.hash.slice(1);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const t = (k, a, b) => T[lang][k].replace("{a}", a).replace("{b}", b);
+const L = o => esc(o && typeof o === "object" ? (o[lang] || o.en || "") : o);
+const n0 = v => Math.round(v).toLocaleString("en-US");
+const num = s => `<span class="num">${s}</span>`;
+const money = v => `${num((v < 0 ? "−" : "") + n0(Math.abs(v)))} ${T[lang].aed}`;
+const pct = (v, d = 1) => num((v < 0 ? "−" : "") + Math.abs(v).toFixed(d) + "%");
+const dateStr = s => new Date(s + "T00:00:00Z").toLocaleDateString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB", {day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+
+function render() {
+  document.documentElement.lang = lang; document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  const r = KEYORA.calc(D, pick), lb = KEYORA.labels(r), S = KEYORA.scenarios(D.market.priceGrowth12m);
+  const all = KEYORA.KEYS.map(k => [k, KEYORA.calc(D, k)]);
+  const headline = r.profit <= 0 ? t("v_loss") : r.cushion < 5 ? t("v_thin") : t("v_profit");
+  const sd = D.supply || {}, maxSale = Math.max(1, ...(sd.salesByType || []).map(x => x.count));
+  const totalSales = (sd.salesByType || []).reduce((a, x) => a + x.count, 0);
+  const step = (k, v, cls) => `<div class="${cls || ""}"><span>${k}</span><span>${v}</span></div>`;
+  const y2 = r.years.toFixed(2);
+  const wa = (AGENT.whatsapp || "").replace(/[^0-9]/g, "");
+  const agentName = lang === "ar" ? (AGENT.nameAr || AGENT.name) : (AGENT.name || AGENT.nameAr);
+  const soc = Object.entries(AGENT.socials || {}).filter(([, u]) => /^https:\/\//.test(u || ""))
+    .map(([k, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(k)}</a>`).join(" · ");
+  document.getElementById("app").innerHTML = `
+  <div class="bar"><div class="brand">KEYORA<small>${t("brandSub")}</small></div>
+    <button class="lang" id="lang-btn" type="button">${lang === "ar" ? "English" : "العربية"}</button></div>
+
+  <header class="hero">
+    <div class="eyebrow">${t("eyebrow")} · ${dateStr(D.date)}</div>
+    <h1>${esc(D.project.name)} · ${L(D.unit.type)}</h1>
+    <p class="muted">${L(D.project.area)}، ${L(D.project.city)} · ${t("developer")}: ${esc(D.project.developer)}</p>
+    <div class="facts">
+      <div><span>${t("unit")}</span><b>${esc(D.unit.ref || "")}</b></div>
+      <div><span>${t("size")}</span><b>${num(n0(D.unit.size))} ${t("sqft")}</b></div>
+      <div><span>${t("price")}</span><b>${money(D.unit.price)}</b></div>
+      <div><span>${t("psf")}</span><b>${money(r.unitPsf)}</b></div>
+      <div><span>${t("handover")}</span><b>${dateStr(D.handover)}</b></div>
+    </div>
+  </header>
+
+  <div class="verdict">
+    <h2>${headline}</h2>
+    <div class="two">
+      <div class="stat"><span>${t("sellAt")}</span><b>${money(r.profit)}</b><em>${pct(r.roi)} ${t("onCost")}</em></div>
+      <div class="stat"><span>${t("rentOut")}</span><b>${pct(r.netYield)}</b><em>${t("netYield")} · ${money(r.netRent)} ${t("perYear")}</em></div>
+    </div>
+    <p class="muted">${t("basedOn")} ${t(pick)} (${pct(r.priceGrowth)} ${t("growth")})</p>
+  </div>
+
+  <section>
+    <h2>${t("pickTitle")}</h2><p class="muted">${t("pickHelp")}</p>
+    <div class="pick">${KEYORA.KEYS.map(k => `<button type="button" data-pick="${k}" aria-pressed="${k === pick}"><b>${t(k)}</b><span>${pct(S[k])} ${t("growth")}</span></button>`).join("")}</div>
+  </section>
+
+  <section>
+    <h2>${t("checksTitle")}</h2>
+    <div class="checks">
+      <div class="check ${lb.price === "above" ? "mid" : "high"}"><span>${t("c_price")}</span><b>${pct(r.priceVsArea)}</b><i class="tag">${t(lb.price)}</i><p>${t("p_price", money(r.unitPsf), money(D.market.areaPsf))}</p></div>
+      <div class="check ${lb.cushion}"><span>${t("c_cushion")}</span><b>${pct(r.cushion)}</b><i class="tag">${t(lb.cushion)}</i><p>${t("p_cushion", money(r.valueToday), money(r.breakEven))}</p></div>
+      <div class="check"><span>${t("c_be")}</span><b>${money(r.breakEven)}</b><p>${t("p_be")}</p></div>
+      <div class="check ${lb.yield}"><span>${t("c_yield")}</span><b>${pct(r.netYield)}</b><i class="tag">${t(lb.yield)}</i><p>${t("p_yield", money(r.netRent), money(r.totalCost))}</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>${t("tableTitle")}</h2>
+    <div class="scroll"><table>
+      <tr><th></th>${all.map(([k, x]) => `<th class="${k === pick ? "on" : ""}">${t(k)}<br>${pct(x.priceGrowth)}</th>`).join("")}</tr>
+      ${[["salePrice", x => money(x.salePrice)], ["profit", x => money(x.profit)], ["roi", x => pct(x.roi)], ["cashReturn", x => pct(x.cashReturn)], ["grossRent", x => money(x.grossRent)], ["netRent", x => money(x.netRent)], ["netYield", x => pct(x.netYield)]]
+        .map(([k, f]) => `<tr><td>${t(k)}</td>${all.map(([kk, x]) => `<td class="${kk === pick ? "on" : ""}">${f(x)}</td>`).join("")}</tr>`).join("")}
+    </table></div>
+  </section>
+
+  ${sd.salesByType ? `<section>
+    <h2>${t("sdTitle")}</h2>
+    <p><b>${t("selling")}</b></p>
+    <div class="rows">${sd.salesByType.map(x => `<div class="row ${x.match ? "me" : ""}"><span>${L(x.label)}</span><div class="track"><i style="width:${(x.count / maxSale * 100).toFixed(1)}%"></i></div><span>${num(n0(x.count))} · ${pct(x.count / totalSales * 100, 0)}</span></div>`).join("")}</div>
+    <p class="muted">${L(sd.salesPeriod)}</p>
+    ${sd.project ? `<p><b>${t("project")}</b></p>
+    <div class="rows"><div class="row me"><span>${pct(sd.project.sold / sd.project.units * 100, 0)}</span><div class="track"><i style="width:${(sd.project.sold / sd.project.units * 100).toFixed(1)}%"></i></div><span>${t("unitsSold", num(n0(sd.project.sold)), num(n0(sd.project.units)))}</span></div></div>` : ""}
+    ${sd.area ? `<p><b>${t("areaSupply")}</b></p><p>${t("upcoming", num(n0(sd.area.upcomingUnits)), num(sd.area.upcomingProjects))}</p>` : ""}
+  </section>` : ""}
+
+  <section>
+    <h2>${t("planTitle")}</h2>
+    <div class="plan" dir="ltr">${D.plan.map(p => `<i class="${p.beforeHandover ? "" : "after"}" style="width:${p.pct}%">${p.pct}%</i>`).join("")}</div>
+    <div class="scroll"><table>${D.plan.map(p => `<tr><td>${L(p.label)}</td><td>${L(p.when)}</td><td>${pct(p.pct, 0)}</td><td>${money(D.unit.price * p.pct / 100)}</td></tr>`).join("")}</table></div>
+    <p><b>${t("cashBefore")}:</b> ${money(r.cashIn)}</p><p class="muted">${t("cashHelp", r.paidPct)}</p>
+  </section>
+
+  ${(D.location || []).length ? `<section><div class="checks">${D.location.map(c => `<div class="check"><span>${L(c.title)}</span><p>${L(c.text)}</p>${/^https:\/\//.test(c.source || "") ? `<a href="${esc(c.source)}" target="_blank" rel="noopener">${t("src")}</a>` : ""}</div>`).join("")}</div></section>` : ""}
+
+  ${(D.notes || []).length ? `<section><h2>${t("notesTitle")}</h2><ul>${D.notes.map(x => `<li>${L(x)}</li>`).join("")}</ul></section>` : ""}
+
+  ${(D.assumptions || []).length ? `<div class="confirm"><h2>${t("confirmTitle")}</h2><ul>${D.assumptions.map(x => `<li>${L(x)}</li>`).join("")}</ul></div>` : ""}
+
+  <details id="calc-box" ${window.__calcOpen ? "open" : ""}>
+    <summary>${t("calcTitle")}</summary>
+    <div class="steps"><b>${t("buySide")}</b>
+      ${step(t("s_price"), money(D.unit.price))}${step(t("s_dld", D.costs.dldPct), money(r.dld))}${step(t("s_admin"), money(D.costs.adminFee))}${step(t("s_total"), money(r.totalCost), "tot")}
+      <b>${t("sellSide")} · ${t(pick)}</b>
+      ${step(t("s_value", n0(D.market.areaPsf), n0(D.unit.size)), money(r.valueToday))}${step(t("s_grow", r.priceGrowth, y2), "× " + num(Math.pow(1 + r.priceGrowth / 100, r.years).toFixed(4)))}${step(t("s_sale"), money(r.salePrice))}${step(t("s_comm", D.costs.sellCommissionPct, D.costs.vatPct), money(-r.sellCost))}${step(t("s_total"), money(-r.totalCost))}${step(t("s_profit"), money(r.profit), "tot")}
+      <b>${t("rentSide")}</b>
+      ${step(t("s_rent"), money(D.market.areaRent))}${step(t("s_rgrow", r.rentGrowth, y2), money(r.grossRent))}${step(t("s_vac", D.costs.vacancyPct), money(-r.vacancy))}${step(t("s_mgmt", D.costs.managementPct), money(-r.management))}${step(t("s_sc", D.costs.serviceChargePsf), money(-r.serviceCharge))}${step(t("s_net"), money(r.netRent), "tot")}
+      ${step(t("netYield") + " = " + t("s_net") + " ÷ " + t("s_total"), pct(r.netYield, 2), "tot")}
+    </div>
+  </details>
+
+  <section>
+    <h2>${t("srcTitle")}</h2>
+    <div class="scroll"><table><tr><th>${t("src")}</th><th>${t("what")}</th><th>${t("period")}</th><th>${t("pulled")}</th></tr>
+    ${D.sources.map(s => `<tr><td>${/^https:\/\//.test(s.url || "") ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</td><td>${L(s.what)}</td><td>${L(s.period)}</td><td>${dateStr(s.pulled)}</td></tr>`).join("")}</table></div>
+  </section>
+
+  <footer>
+    ${agentName || AGENT._logo ? `<div class="agent">${AGENT._logo ? `<img class="logo" src="${AGENT._logo}" alt="">` : ""}${AGENT._photo ? `<img src="${AGENT._photo}" alt="">` : ""}
+      <div><span class="muted">${t("prepared")}</span><br><b>${esc(agentName || "")}</b>${AGENT.company ? " · " + esc(AGENT.company) : ""}${AGENT.brn ? " · BRN " + esc(AGENT.brn) : ""}${AGENT.whatsapp ? `<br>${num(esc(AGENT.whatsapp))}` : ""}</div>
+      ${wa ? `<a class="wa" href="https://wa.me/${wa}?text=${encodeURIComponent(t("waMsg", D.project.name))}" target="_blank" rel="noopener">${t("wa")}</a>` : ""}</div>` : ""}
+    ${soc ? `<div>${soc}</div>` : ""}
+    <p>${t("disclaimer", dateStr(D.date))}</p>
+    <p class="credit">KEYORA · Off-plan Calculator v1.0 © 2026 Hassan Abu El-Leil · حسن أبو الليل</p>
+  </footer>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-pick]"), l = e.target.closest("#lang-btn");
+  if (!b && !l) return;
+  window.__calcOpen = document.getElementById("calc-box").open;
+  if (b) pick = b.dataset.pick; else lang = lang === "ar" ? "en" : "ar";
+  render();
+});
+window.addEventListener("beforeprint", () => { document.getElementById("calc-box").open = true; });
+render();
+</script>
+
+</body>
+</html>
